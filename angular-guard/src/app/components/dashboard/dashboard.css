@@ -5,3 +5,9 @@
   border-radius: 10px;
   cursor: pointer;
 }
+
+.text-conatiner {
+  background-color:rgb(156, 213, 215);
+  width: 90%;
+  height: 100%;
+}
