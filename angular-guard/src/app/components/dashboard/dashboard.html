@@ -6,5 +6,7 @@
 <div class="text-conatiner">
   <h3>Dashboard Information</h3>
   <p>{{infoText | shortenText: 50}}</p>
+  <p>Third pipe - {{displayedText}}</p>
+  <button (click)="showMore = !showMore">{{ showMore ? 'Show Less' : 'Show More' }}</button>
 </div>
 <button (click)="logout()" class="btn-entry">Logout</button>
