@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FirstPipePipe } from '../../Pipes/first-pipe';
 import { ShortenTextPipe } from '../../Pipes/shorten-text-pipe';
 
@@ -11,11 +11,18 @@ import { ShortenTextPipe } from '../../Pipes/shorten-text-pipe';
   styleUrls: ['./dashboard.css']
 })
 export class DashboardComponent {
-  @Input() userName: string = 'Raman Milashevich';
-  @Input() infoText: string = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut voluptas cum omnis hic officia debitis magnam voluptatibus nemo provident, iste, aperiam ratione assumenda perspiciatis voluptatem eos totam fuga sunt accusantium inventore fugiat voluptatum dicta? Iste reprehenderit error ducimus! Labore soluta incidunt, vel quisquam laborum ex alias beatae eligendi corrupti corporis similique consequatur rerum iusto! Porro, eum aliquam impedit eius voluptatum ullam quae iste, provident ea, consequuntur neque amet. Rerum in, tenetur, ullam quasi eius ea neque earum magnam aliquid pariatur iste est non quidem. Aperiam molestiae tempora quo nihil reiciendis aspernatur fugiat consequuntur dolores nobis possimus. Laborum, aperiam deleniti. Illum!';
+  @Input() userName: string = '';
+  @Input() infoText: string = 'Default text here...';
 
   showMore: boolean = false;
-  constructor(private router: Router) {}
+  constructor(private router: Router, private route: ActivatedRoute) {
+    this.route.paramMap.subscribe(params => {
+      const name = params.get('userName');
+      if (name) {
+        this.userName = name;
+      }
+    })
+  }
 
   logout() {
     localStorage.removeItem('isLoggedIn');

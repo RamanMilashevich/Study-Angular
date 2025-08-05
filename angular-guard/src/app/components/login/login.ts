@@ -11,8 +11,9 @@ import { Router } from '@angular/router';
 export class LoginComponent {
 constructor(private router: Router) {}
 
+userName: string = 'Raman';
   login() {
     localStorage.setItem('isLoggedIn', 'true');
-    this.router.navigate(['dashboard']);
+    this.router.navigate(['dashboard', this.userName]);
   }
 }
