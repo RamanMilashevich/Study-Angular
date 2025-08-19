@@ -1,9 +1,19 @@
-<h2>LoginComponent</h2>
-<p>Welcome to the login page!</p>
-<p>If you want to login, click the button below:</p>
-<button (click)="login()" class="btn-entry">Login</button>
+<h3>Signal Array Demo</h3>
 
-<h2>Signals study</h2>
-<button (click)="runDemo()">Run cart demo</button>
-<div>Subtotal: {{ subtotal() }}</div>
-<div>Total: {{ total() }}</div>
+<!-- Option 1: Use HTML entities for { and } -->
+<button (click)="add10()">Add &#123;id:10,'A'&#125;</button>
+<button (click)="add11()">Add &#123;id:11,'B'&#125;</button>
+<button (click)="add12()"> Add 12</button>
+<button (click)="update10()">Update 10 → 'AA'</button>
+<button (click)="update12()">Update 12</button>
+
+
+<button (click)="trySetMethod()">Try set method</button>
+<button (click)="remove10()">Remove 10</button>
+<button (click)="remove11()">Remove 11</button>
+<button (click)="remove12()"> Remove 12</button>
+<button (click)="remove15()">Remove 15</button>
+
+<pre>{{ arr() | json }}</pre>
+
+<button type="button" (click)="login()">Login</button>
