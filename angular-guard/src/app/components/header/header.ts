@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { of, interval, from, Subject, ReplaySubject, BehaviorSubject, AsyncSubject} from 'rxjs';
+import { of, interval, from, Subject, ReplaySubject, BehaviorSubject, AsyncSubject, map, filter} from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -47,16 +47,22 @@ export class HeaderComponent {
     // behavior$.subscribe(v => console.log("B:", v)) // world!
 
 
-    const async$ = new AsyncSubject<number>(); // Emits only the last value when completed.
+    // const async$ = new AsyncSubject<number>(); // Emits only the last value when completed.
 
-    async$.subscribe(v=> console.log('Sub1:', v))
+    // async$.subscribe(v=> console.log('Sub1:', v))
 
-    async$.next(1);
-    async$.next(2);
-    async$.next(3);
+    // async$.next(1);
+    // async$.next(2);
+    // async$.next(3);
 
-    async$.subscribe(v => console.log('Sub2:', v))
+    // async$.subscribe(v => console.log('Sub2:', v))
 
-    async$.complete() //Emits only the last value when completed. // 3
+    // async$.complete() //Emits only the last value when completed. // 3
+
+    of(1,2,3,4,5).pipe(
+      map(v => v * 2),
+      filter(v => v > 5)
+    ).subscribe(v => console.log(v)) 
   }
+
 }
