@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
-import { of, interval, from, Subject, ReplaySubject, BehaviorSubject, AsyncSubject, map, filter} from 'rxjs';
+import { of, interval, from, Subject, ReplaySubject, BehaviorSubject, AsyncSubject, filter, Observable, fromEvent} from 'rxjs';
+import { map, tap, delay, switchMap, /* we'll swap this later */
+concatMap,
+mergeMap,
+exhaustMap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +14,40 @@ import { of, interval, from, Subject, ReplaySubject, BehaviorSubject, AsyncSubje
 })
 export class HeaderComponent {
 
+  private request$(label: string, ms: number): Observable<string> {
+    console.log(`START ${label} (will take ${ms}ms)`);
+    return of(`DONE ${label}`).pipe(
+      delay(ms),
+      tap(() => console.log(`END   ${label}`))
+    );
+  }
+
   constructor() {
+
+    // fromEvent<MouseEvent>(window, 'click').pipe(
+    //   map((_, i) => ({ label: `req#${i+1}`, ms: [1600, 1400, 1300][Math.min(i, 2)] })),
+    //   tap(({label, ms}) => console.log(`CLICK → ${label} (${ms}ms)`)),
+    //   switchMap(({ label, ms }) => this.request$(label, ms)),
+    // ).subscribe(v => console.log('SUB:', v)); // Try triple-clicking quickly → only the last finishes.
+    // fromEvent<MouseEvent>(window, 'click').pipe(
+    //   map((_, i) => ({ label: `req#${i+1}`, ms: [1600, 1400, 1300][Math.min(i, 2)] })),
+    //   tap(({label, ms}) => console.log(`CLICK → ${label} (${ms}ms)`)),
+    //   concatMap(({ label, ms }) => this.request$(label, ms)),
+    // ).subscribe(v => console.log('SUB:', v)); // Try triple-clicking quickly → all requests finish in order.
+
+    // fromEvent<MouseEvent>(window, 'click').pipe(
+    //   map((_, i) => ({ label: `req#${i+1}`, ms: [1600, 1400, 1300][Math.min(i, 2)] })),
+    //   tap(({label, ms}) => console.log(`CLICK → ${label} (${ms}ms)`)),
+    //   mergeMap(({ label, ms }) => this.request$(label, ms)),
+    // ).subscribe(v => console.log('SUB:', v)); // Try triple-clicking quickly → all requests finish in parallel.
+
+    //  fromEvent<MouseEvent>(window, 'click').pipe(
+    //   map((_, i) => ({ label: `req#${i+1}`, ms: [600, 400, 300][Math.min(i, 2)] })),
+    //   tap(({label, ms}) => console.log(`CLICK → ${label} (${ms}ms)`)),
+    //   exhaustMap(({ label, ms }) => this.request$(label, ms)),
+    // ).subscribe(v => console.log('SUB:', v)); // Try triple-clicking quickly → only the first request finishes, others are ignored.
+
+
     // Example 1: simple observable
     // const source$ = from(['A', 'B', 'C']); // emits 1,2,3 then completes
     // source$.subscribe(value=> console.log(value));
@@ -59,10 +96,10 @@ export class HeaderComponent {
 
     // async$.complete() //Emits only the last value when completed. // 3
 
-    of(1,2,3,4,5).pipe(
-      map(v => v * 2),
-      filter(v => v > 5)
-    ).subscribe(v => console.log(v)) 
+  //   of(1,2,3,4,5).pipe(
+  //     map(v => v * 2),
+  //     filter(v => v > 5)
+  //   ).subscribe(v => console.log(v))
   }
 
 }
