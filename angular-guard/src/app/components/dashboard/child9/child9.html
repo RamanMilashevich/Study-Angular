@@ -1,0 +1,21 @@
+<!-- <p>Current quantity from child: {{ quantity }}</p> -->
+<!-- <p>{{color}}</p> -->
+
+<!-- <div #messageContainer style="height: 200px; overflow-y: scroll; border: 1px solid #ccc;">
+  <div *ngFor="let message of messages">{{ message }}</div>
+  <button (click)="addMessage()">Focus Input</button>
+</div> -->
+
+<!-- <p>{{ status }}</p> -->
+<p> {{ count() }}</p>
+<button (click)="increment()">Increment</button>
+<button (click)="decrement()">Decreement</button>
+
+<p>User status {{ status() }}</p>
+<button (click)="toggleStatus()">Toggle Status</button>
+
+<p>Name: {{ user().name }}</p>
+<p>Age: {{ user().age }}</p>
+<button (click)="haveBirthday()">Have birthday</button>
+
+<p>Seconds elapsed: {{ seconds()}}</p>
