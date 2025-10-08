@@ -33,8 +33,8 @@ export class Child10 {
     // this.bus.next(2)
   }
   ngOnInit() {
-    this.bus.next(1)
-    this.bus.next(2)
+    // this.bus.next(1)
+    // this.bus.next(2)
   }
 
   subB: Subscription = this.bus.subscribe({ next: this.onNextB, error: this.onError, complete: this.onComplete})

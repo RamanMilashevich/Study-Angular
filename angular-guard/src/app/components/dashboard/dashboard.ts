@@ -10,11 +10,12 @@ import { starRating } from "./child8/child8";
 import { Child9 } from "./child9/child9";
 import { Child10 } from './child10/child10';
 import { Child11 } from "./child11/child11";
+import { Child12 } from "./child12/child12";
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [Child10, Child11],
+  imports: [Child10, Child11, Child12],
   templateUrl: './dashboard.html',
   styleUrls: ['./dashboard.css']
 })
