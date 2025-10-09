@@ -11,11 +11,12 @@ import { Child9 } from "./child9/child9";
 import { Child10 } from './child10/child10';
 import { Child11 } from "./child11/child11";
 import { Child12 } from "./child12/child12";
+import { Child13 } from "./child13/child13";
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [Child10, Child11, Child12],
+  imports: [Child10, Child11, Child12, Child13],
   templateUrl: './dashboard.html',
   styleUrls: ['./dashboard.css']
 })
