@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, inject, Input, OnDestroy, Output, ViewChild } from '@angular/core';
 import { Child1 } from './child1/child1';
 import { Child2 } from "./child2/child2";
 import { Child3 } from "./child3/child3";
@@ -12,15 +12,21 @@ import { Child10 } from './child10/child10';
 import { Child11 } from "./child11/child11";
 import { Child12 } from "./child12/child12";
 import { Child13 } from "./child13/child13";
+import { Child14 } from "./child14/child14";
+import { Subscribable, Subscription } from 'rxjs';
+import { Header } from "./header/header";
+import { Sidebar } from "./sidebar/sidebar";
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [Child10, Child11, Child12, Child13],
+  imports: [Child14, Header, Sidebar],
   templateUrl: './dashboard.html',
   styleUrls: ['./dashboard.css']
 })
 export class DashboardComponent  {
+
+
   // @ViewChild(Child9) child!: Child9;
 
   // resetChildStatus() {
