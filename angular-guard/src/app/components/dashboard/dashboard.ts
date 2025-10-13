@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, EventEmitter, inject, Input, OnDestroy, Output, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Child1 } from './child1/child1';
 import { Child2 } from "./child2/child2";
 import { Child3 } from "./child3/child3";
@@ -13,18 +13,35 @@ import { Child11 } from "./child11/child11";
 import { Child12 } from "./child12/child12";
 import { Child13 } from "./child13/child13";
 import { Child14 } from "./child14/child14";
-import { Subscribable, Subscription } from 'rxjs';
+import { Subscribable, Subscription, interval } from 'rxjs';
 import { Header } from "./header/header";
 import { Sidebar } from "./sidebar/sidebar";
+import { Child1ngOnChange } from './child1ng-on-changes/child1ng-on-changes';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [Child14, Header, Sidebar],
+  imports: [Child14, Header, Sidebar, Child1ngOnChange],
   templateUrl: './dashboard.html',
   styleUrls: ['./dashboard.css']
 })
-export class DashboardComponent  {
+export class DashboardComponent implements OnInit, OnDestroy {
+
+  // ngOnChanges
+  // newCount = 2;
+  // private intervalSub?: Subscription;
+
+  // ngOnInit(): void {
+  //   this.intervalSub = interval(2000).subscribe(() => {
+  //     this.newCount = Math.random();
+  //   });
+  // }
+
+  // ngOnDestroy(): void {
+  //   this.intervalSub?.unsubscribe();
+  // }
+
+
 
 
   // @ViewChild(Child9) child!: Child9;
