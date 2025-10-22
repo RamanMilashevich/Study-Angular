@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Child1 } from './child1/child1';
 import { Child2 } from "./child2/child2";
 import { Child3 } from "./child3/child3";
@@ -13,105 +13,20 @@ import { Child11 } from "./child11/child11";
 import { Child12 } from "./child12/child12";
 import { Child13 } from "./child13/child13";
 import { Child14 } from "./child14/child14";
-import { Subscribable, Subscription, interval } from 'rxjs';
+import { Subject, Subscribable, Subscription, from, interval, multicast } from 'rxjs';
 import { Header } from "./header/header";
 import { Sidebar } from "./sidebar/sidebar";
 import { Child1ngOnChange } from './child1ng-on-changes/child1ng-on-changes';
+import { Child1ngDoCheck } from "./child1ng-do-check/child1ng-do-check";
+import { UseApiDemo } from '../use-api-demo/use-api-demo';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [Child14, Header, Sidebar, Child1ngOnChange],
+  imports: [UseApiDemo],
   templateUrl: './dashboard.html',
   styleUrls: ['./dashboard.css']
 })
-export class DashboardComponent implements OnInit, OnDestroy {
+export class DashboardComponent   {
 
-  // ngOnChanges
-  // newCount = 2;
-  // private intervalSub?: Subscription;
-
-  // ngOnInit(): void {
-  //   this.intervalSub = interval(2000).subscribe(() => {
-  //     this.newCount = Math.random();
-  //   });
-  // }
-
-  // ngOnDestroy(): void {
-  //   this.intervalSub?.unsubscribe();
-  // }
-
-
-
-
-  // @ViewChild(Child9) child!: Child9;
-
-  // resetChildStatus() {
-  //   this.child.reset()
-  // }
-
-
-  // newColor: string = 'Blue';
-  // count: number = 0;
-
-  // increaseCount() {
-  //   this.count += 1;
-  // }
-
-  // decreaseCount() {
-  //   this.count -= 1;
-  // }
-
-
-
-
-
-    // userRating: number = 0;
-
-    // increaseStar() {
-    //   this.userRating += 1;
-    // }
-
-
-
-//  parentName: string = 'Writte your name in this input'
-
-
-
-
-
-
-//   @Input() counter: number = 0
-
-//   increase() {
-//     this.counter += 1;
-//   }
-
-//   onChangeName(name: string) {
-//     console.log('Output works', name)
-//     name = 'Igor'
-//   }
-
-
-
-
-
-
-//   myCount: number = 0;
-//   counterChange(event: number) {
-//     this.myCount = event
-//     console.log(this.myCount)
-//   }
-
-//   dataFromChild: string = ''
-
-//   doSomething(event: string) {
-//     this.dataFromChild = event;
-//     console.log(event)
-//   }
-
-//   checkIfClick(val: boolean)
-//  {
-//   console.log(val)
-//  }
 }

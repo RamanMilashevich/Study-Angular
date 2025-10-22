@@ -1,0 +1,16 @@
+<section>
+  <button (click)="refresh()">Reload posts..</button>
+  <article *ngIf="posts$() as posts">
+    <h3>Total {{ posts.length }}</h3>
+    <ul>
+      <li *ngFor="let post of posts">{{ post.title }}
+      </li>
+    </ul>
+  </article>
+
+  <form (ngSubmit)="saveDraft()">
+    <input [(ngModel)]="draft.title" name="title" placeholder="Title">
+    <textarea [(ngModel)]="draft.body" name="body"></textarea>
+    <button type="submit">Create post</button>
+  </form>
+</section>
