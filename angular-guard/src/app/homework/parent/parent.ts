@@ -2,11 +2,14 @@ import { AfterContentChecked, AfterContentInit, Component, ContentChild, Element
 import { Child } from '../child/child';
 import { SelectHeaderDirective, SelectFooterDirective } from '../directives/slots';
 import { ChildStringComponent } from "../child-string/child-string";
+import { HeaderComponent } from "../../components/header/header";
+import { FooterComponent } from "../../components/footer/footer";
+import { RouterOutlet } from "@angular/router";
 
 @Component({
   selector: 'app-parent',
   standalone: true,
-  imports: [Child, ChildStringComponent, SelectHeaderDirective, SelectFooterDirective],
+  imports: [Child, SelectHeaderDirective, SelectFooterDirective, HeaderComponent, FooterComponent, RouterOutlet],
   templateUrl: './parent.html',
   styleUrl: './parent.css'
 })

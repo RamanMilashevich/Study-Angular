@@ -2,12 +2,13 @@ import { Component, signal } from '@angular/core';
 import { HeaderComponent
 } from './components/header/header';
 import { FooterComponent   } from './components/footer/footer';
-import { MainComponent } from './components/main/main';
+import { RouterOutlet } from '@angular/router';
+import { SelectHeaderDirective, SelectFooterDirective } from "./homework/directives/slots";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [HeaderComponent, FooterComponent, MainComponent],
+  imports: [HeaderComponent, FooterComponent, RouterOutlet, SelectHeaderDirective, SelectFooterDirective],
   templateUrl: './app.html',
   styleUrls: ['./app.css']
 })

@@ -1,5 +1,7 @@
 <div class="card-container">
-  <header select="[selectHeader]"><ng-content></ng-content></header>
+  <header><ng-content select="[selectHeader]"></ng-content></header>
   <ng-content></ng-content>
-  <footer select="[selectFooter]"><ng-content></ng-content></footer>
+  <footer><ng-content select="[selectFooter]"></ng-content></footer>
 </div>
+
+<h1>This is child with template for parent(ng-content)</h1>

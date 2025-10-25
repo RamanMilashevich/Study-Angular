@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { of, interval, from, Subject, ReplaySubject, BehaviorSubject, AsyncSubject, filter, Observable, fromEvent} from 'rxjs';
 import { map, tap, delay, switchMap, /* we'll swap this later */
 concatMap,
@@ -8,9 +9,9 @@ exhaustMap} from 'rxjs/operators';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './header.html',
-  styleUrl: './header.css'
+  styleUrls: ['./header.css']
 })
 export class HeaderComponent {
 

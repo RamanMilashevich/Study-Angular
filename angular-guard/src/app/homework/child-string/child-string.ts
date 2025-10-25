@@ -1,16 +1,12 @@
 import { AfterContentInit, Component, ContentChild, ElementRef } from '@angular/core';
+import { Child } from "../child/child";
 
 @Component({
   selector: 'app-child-string',
   standalone: true,
-  template: `
-    <div class="card-container">
-      <header><ng-content select="[selectorHeader]"></ng-content></header>
-      <ng-content></ng-content>
-      <footer><ng-content select="[selectorFooter]"></ng-content></footer>
-    </div>
-  `,
-  styleUrls: ['./child-string.css']
+  templateUrl: './child-string.html',
+  styleUrls: ['./child-string.css'],
+  imports: [Child]
 })
 export class ChildStringComponent implements AfterContentInit {
   // expects the parent to declare #headerVar and #footerVar
