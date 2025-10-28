@@ -5,13 +5,7 @@ import { SelectFooterDirective, SelectHeaderDirective } from '../directives/slot
   selector: 'app-child',
   standalone: true,
   imports: [],
-  template: `
-    <div class="card-container">
-      <header><ng-content select="[selectorHeader]"></ng-content></header>
-      <ng-content></ng-content>
-      <footer><ng-content select="[selectorFooter]"></ng-content></footer>
-    </div>
-  `,
+  templateUrl: './child.html',
   styleUrls: ['./child.css']
 })
 export class Child implements AfterContentInit {

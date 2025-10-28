@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { RouterLink, ActivatedRoute, Router, RouterLinkActive } from '@angular/router';
 import { of, interval, from, Subject, ReplaySubject, BehaviorSubject, AsyncSubject, filter, Observable, fromEvent} from 'rxjs';
 import { map, tap, delay, switchMap, /* we'll swap this later */
 concatMap,
@@ -9,11 +9,14 @@ exhaustMap} from 'rxjs/operators';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, RouterLinkActive],
   templateUrl: './header.html',
   styleUrls: ['./header.css']
 })
 export class HeaderComponent {
+
+    private route = inject(ActivatedRoute);
+  private router = inject(Router);
 
   private request$(label: string, ms: number): Observable<string> {
     console.log(`START ${label} (will take ${ms}ms)`);

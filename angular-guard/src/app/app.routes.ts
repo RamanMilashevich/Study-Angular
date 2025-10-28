@@ -1,18 +1,62 @@
+// app.routes.ts
 import { Routes } from '@angular/router';
-import { DashboardComponent } from './components/dashboard/dashboard';
-
-import { authGuard } from './auth-guard';
 import { Parent } from './homework/parent/parent';
 import { Child } from './homework/child/child';
 import { ChildStringComponent } from './homework/child-string/child-string';
-import { NotFoundError } from 'rxjs';
 import { NotFoundComponent } from './homework/not-found-component/not-found-component';
+import { AuthGuard } from './app.route.guard';
+import { ReportDetailsResolver } from './homework/service/report-details.resolver';
 
 export const routes: Routes = [
-  {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
-  {path: 'dashboard', component: Parent},
-  {path: 'child', component: Child},
-  {path: 'child-string', component: ChildStringComponent},
-  {path: '**', component: NotFoundComponent}
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
 
+  {
+    path: 'dashboard',
+    component: Parent,
+    canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard],
+    children: [
+      { path: 'new1', loadComponent: loadNew1 },
+      { path: 'new1/:id', loadComponent: loadNew2 },
+      { path: ':id', loadComponent: loadAbout },        // <-- was top-level, now child
+      { path: '', pathMatch: 'full', redirectTo: 'new1' }
+    ]
+  },
+  { path: 'reports', loadComponent: loadReportsList },
+  { path: 'reports/:id', loadComponent: loadReportDetails, resolve: { report: ReportDetailsResolver } },
+
+  { path: 'child', component: Child },
+  { path: 'child-string', component: ChildStringComponent },
+  { path: '**', component: NotFoundComponent }
 ];
+
+// ---- Lazy loaders with named pickers (no anonymous functions) ----
+export function loadAbout() {
+  return import('./homework/about.component/about.component').then(pickAbout);
+}
+function pickAbout(
+  m: typeof import('./homework/about.component/about.component')
+) {
+  return m.AboutComponent;
+}
+
+export function loadNew1() {
+  return import('./homework/new1/new1').then(pickNew1);
+}
+function pickNew1(m: typeof import('./homework/new1/new1')) {
+  return m.New1;
+}
+
+export function loadNew2() {
+  return import('./homework/new2/new2').then(pickNew2);
+}
+function pickNew2(m: typeof import('./homework/new2/new2')) {
+  return m.New2;
+}
+
+export function loadReportsList() {
+  return import('./homework/load-reports-list/load-reports-list').then(module => module.LoadReportsList)
+}
+export function loadReportDetails() {
+  return import('./homework/load-reports-details/load-reports-details').then(module => module.LoadReportsDetails)
+}
