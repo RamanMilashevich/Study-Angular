@@ -6,6 +6,7 @@ import { ChildStringComponent } from './homework/child-string/child-string';
 import { NotFoundComponent } from './homework/not-found-component/not-found-component';
 import { AuthGuard } from './app.route.guard';
 import { ReportDetailsResolver } from './homework/service/report-details.resolver';
+import { LoadReportsList } from './homework/load-reports-list/load-reports-list';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -24,7 +25,11 @@ export const routes: Routes = [
   },
   { path: 'reports', loadComponent: loadReportsList },
   { path: 'reports/:id', loadComponent: loadReportDetails, resolve: { report: ReportDetailsResolver } },
-
+  { path: 'forms/template', loadComponent: loadFormsTemplateDemo },
+  { path: 'forms/reactive', loadComponent: loadFormsReactiveDemo },
+  {
+    path: 'zoneJS', component: LoadReportsList
+  },
   { path: 'child', component: Child },
   { path: 'child-string', component: ChildStringComponent },
   { path: '**', component: NotFoundComponent }
@@ -59,4 +64,12 @@ export function loadReportsList() {
 }
 export function loadReportDetails() {
   return import('./homework/load-reports-details/load-reports-details').then(module => module.LoadReportsDetails)
+}
+
+// Forms demo lazy loaders (keep named for better stack traces)
+export function loadFormsTemplateDemo() {
+  return import('./components/forms-template-demo').then(m => m.AppComponent);
+}
+export function loadFormsReactiveDemo() {
+  return import('./components/forms-reactive-demo').then(m => m.FormsReactiveDemoComponent);
 }

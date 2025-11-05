@@ -1,3 +1,32 @@
 <h2>Detail ID: {{ route }}</h2>
 <button (click)="next()">Next</button>
 <button (click)="prev()">Prev</button>
+
+
+<h1>Form module task</h1>
+<br>
+
+<h1>Template-driven Login</h1>
+
+<form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+  <label>
+    Email
+    <input name="email" ngModel required email placeholder="you@example.com" />
+  </label>
+  <div *ngIf="f.submitted && f.controls['email']?.invalid">
+    Invalid email
+  </div>
+
+  <label>
+    Password
+    <input name="password" ngModel type="password" required minlength="6" placeholder="••••••" />
+  </label>
+  <div *ngIf="f.submitted && f.controls['password']?.invalid">
+    Min 6 characters
+  </div>
+
+  <button>Login</button>
+</form>
+
+<h3>Last submitted value</h3>
+<pre>{{ lastValue | json }}</pre>
