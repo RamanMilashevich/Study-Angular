@@ -1,0 +1,7 @@
+<h1>Parent Component</h1>
+<h2>Counter in Parent: {{ counter() }}</h2>
+<app-signals-child1 [counterChild1]="counter" (increment)="increment()" (decreement)="decreement()">
+</app-signals-child1>
+
+<app-signals-child2 [counterChild2]="counter" (reset)="reset()">
+</app-signals-child2>

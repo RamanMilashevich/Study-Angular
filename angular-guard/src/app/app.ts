@@ -8,7 +8,7 @@ import { SelectHeaderDirective, SelectFooterDirective } from "./homework/directi
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [HeaderComponent, FooterComponent, RouterOutlet, SelectHeaderDirective, SelectFooterDirective],
+  imports: [HeaderComponent, FooterComponent, RouterOutlet],
   templateUrl: './app.html',
   styleUrls: ['./app.css']
 })

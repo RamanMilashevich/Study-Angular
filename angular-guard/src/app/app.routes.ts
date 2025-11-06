@@ -7,6 +7,9 @@ import { NotFoundComponent } from './homework/not-found-component/not-found-comp
 import { AuthGuard } from './app.route.guard';
 import { ReportDetailsResolver } from './homework/service/report-details.resolver';
 import { LoadReportsList } from './homework/load-reports-list/load-reports-list';
+import { OnpushStrategy } from './homework/onpush-strategy/onpush-strategy';
+import { OnpushStrategyParent } from './homework/onpush-strategy-parent/onpush-strategy-parent';
+import { SignalsParent } from './homework/signals/signals';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -27,9 +30,11 @@ export const routes: Routes = [
   { path: 'reports/:id', loadComponent: loadReportDetails, resolve: { report: ReportDetailsResolver } },
   { path: 'forms/template', loadComponent: loadFormsTemplateDemo },
   { path: 'forms/reactive', loadComponent: loadFormsReactiveDemo },
+  {path: 'onpush', component: OnpushStrategyParent},
   {
     path: 'zoneJS', component: LoadReportsList
   },
+  { path: 'signals', component: SignalsParent},
   { path: 'child', component: Child },
   { path: 'child-string', component: ChildStringComponent },
   { path: '**', component: NotFoundComponent }
