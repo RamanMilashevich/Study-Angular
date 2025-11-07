@@ -1,2 +1,8 @@
-<app-onpush-strategy [data]="user"></app-onpush-strategy>
-<button (click)="sendData()">send data to child to input</button>
+<div>
+  <h2>Parent</h2>
+  <p>Object property: {{ data.name }}</p>
+  <app-child [childData]="data" (dataChanged)="onDataChanged($event)"></app-child>
+  <button (click)="changeProperty()">Mutate property</button>
+  <button (click)="changeReference()">Change reference</button>
+  <button (click)="triggerManualChangeDetection()">Trigger manual change detection</button>
+</div>

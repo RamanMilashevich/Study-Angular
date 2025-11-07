@@ -1,1 +1,7 @@
-<h2>Received data: {{ data.name }}</h2>
+<div>
+  <h3>Child</h3>
+  <p>Input: {{ childData.name }}</p>
+  <button (click)="mutateProperty()">Mutate property in child</button>
+  <button (click)="emitChange()">Emit change</button>
+</div>
+<br>

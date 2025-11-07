@@ -1,18 +1,19 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, Input, OnChanges } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-  selector: 'app-onpush-strategy',
-  imports: [],
+  selector: 'app-child',
   templateUrl: './onpush-strategy.html',
-  styleUrl: './onpush-strategy.css',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class OnpushStrategy implements OnChanges {
+export class ChildComponent {
+  @Input() childData!: { name: string };
+  @Output() dataChanged = new EventEmitter<{ name: string }>();
 
-  @Input() data!: { name: string }
+  mutateProperty() {
+    this.childData.name = 'child_mutated';
+  }
 
-  cd = inject(ChangeDetectorRef);
-  ngOnChanges() {
-    this.cd.detectChanges()
+  emitChange() {
+    this.dataChanged.emit({ name: 'emitted_from_child' });
   }
 }
