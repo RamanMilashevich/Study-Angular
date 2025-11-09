@@ -1,0 +1,10 @@
+<form #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
+  <input type="number" placeholder="Your age" name="age" [(ngModel)]="user.age">
+  <input type="text" placeholder="Your name" name="name" [(ngModel)]="user.name" minlength="3">
+  <input type="text" placeholder="Your surname" name="surname" [(ngModel)]="user.surname" minlength="3">
+  <input type="email" placeholder="Your email" name="email" [(ngModel)]="user.email" email required #email="ngModel">
+  <div *ngIf="email.touched && email.invalid " style="color: red">Please Enter a valid email</div>
+  <input type="password" placeholder="Your password" name="password" [(ngModel)]="user.password" required>
+
+  <button form="submit" [disabled]="myForm.invalid">send</button>
+</form>
