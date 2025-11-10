@@ -5,6 +5,22 @@
   <input type="email" placeholder="Your email" name="email" [(ngModel)]="user.email" email required #email="ngModel">
   <div *ngIf="email.touched && email.invalid " style="color: red">Please Enter a valid email</div>
   <input type="password" placeholder="Your password" name="password" [(ngModel)]="user.password" required>
-
   <button form="submit" [disabled]="myForm.invalid">send</button>
+</form>
+
+<form [formGroup]="myReactiveForm" (onSubmit)="doSomething(myReactiveForm)">
+  <label for="name">email</label>
+  <input id="name" formControlName="userName">
+  <div *ngIf="myReactiveForm.get('userName')?.invalid && myReactiveForm.get('userName')?.touched">
+    UserName should be longer than 2 characters
+  </div>
+  <label for="text">surname</label>
+  <input id="text" formControlName="userSurname">
+  <div style="color: red;"
+    *ngIf="myReactiveForm.get('userSurname')?.invalid && myReactiveForm.get('userSurname')?.touched">
+    Surname is invalid
+  </div>
+  <label for="password">password</label>
+  <input type="password" id="password" formControlName="password">
+  <button>Run</button>
 </form>
