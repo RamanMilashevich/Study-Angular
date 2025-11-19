@@ -1,0 +1,78 @@
+<h2>Reactive form</h2>
+
+<form [formGroup]="myReactiveForm" (ngSubmit)="doSomething(myReactiveForm)" style="display: block">
+  <label for="name">email</label>
+  <input id="name" formControlName="userName">
+  <div *ngIf="myReactiveForm.get('userName')?.invalid && myReactiveForm.get('userName')?.touched">
+    UserName should be longer than 2 characters
+  </div>
+  <label for="text">surname</label>
+  <input id="text" formControlName="userSurname">
+  <div style="color: red;"
+    *ngIf="myReactiveForm.get('userSurname')?.invalid && myReactiveForm.get('userSurname')?.touched">
+    Surname is invalid
+  </div>
+  <label for="password">password</label>
+  <input type="password" id="password" formControlName="password">
+
+
+  <div formGroupName="adress">
+    <input formControlName="city" placeholder="city">
+    <input formControlName="code" placeholder="postal code">
+  </div>
+  <button [disabled]="myReactiveForm.valid">Run</button>
+  <button (click)="setValueToReactiveForm()">Set Mock Data</button>
+</form>
+
+<button (click)="getInput()">get input</button>
+
+
+
+
+
+
+<!-- myReactiveForm.get('userSurname') in Angular reactive forms, you have access to many properties and methods that allow you to:
+
+What you can validate and check on that FormControl:
+Validation State
+
+invalid: true if the control's current value fails any validation check.
+
+valid: true if the control passes all validation checks.
+
+errors: An object containing the validation errors (if any), e.g., {required: true}, {minlength: {requiredLength: 4, actualLength: 2}}. null if no errors.
+
+User Interaction State
+
+touched: true if the user has focused and blurred the control.
+
+untouched: true if not touched yet.
+
+dirty: true if the user has changed the value.
+
+pristine: true if the value is unchanged since initialization.
+
+Control Value Access
+
+value: Current value of this control.
+
+Validator Information
+
+hasValidator(validatorFn): Checks if a specific validator (like Validators.required) is assigned.
+
+validator: The validator function(s) assigned to the control.
+
+Example of usage
+typescript
+const surnameControl = this.myReactiveForm.get('userSurname');
+
+if (surnameControl?.invalid && surnameControl?.touched) {
+  const errors = surnameControl.errors;
+  if (errors?.required) {
+    console.log("Surname is required.");
+  }
+  if (errors?.minlength) {
+    console.log(`Min length required: ${errors.minlength.requiredLength}`);
+  }
+}
+You can use the properties to drive UI feedback conditionally and to programmatically validate or reset controls. -->

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TemplatedrivenForm } from './templatedriven-form';
+import { SignalsExample } from './signals-example';
 
-describe('TemplatedrivenForm', () => {
-  let component: TemplatedrivenForm;
-  let fixture: ComponentFixture<TemplatedrivenForm>;
+describe('SignalsExample', () => {
+  let component: SignalsExample;
+  let fixture: ComponentFixture<SignalsExample>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TemplatedrivenForm]
+      imports: [SignalsExample]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(TemplatedrivenForm);
+    fixture = TestBed.createComponent(SignalsExample);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

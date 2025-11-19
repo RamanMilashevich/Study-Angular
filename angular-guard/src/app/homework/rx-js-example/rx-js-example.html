@@ -1,8 +1,18 @@
-<div *ngFor="let number of results">
-  {{ number }}
-</div>
+template: `
+<h2>RxJS Higher-order Mapping Operators Demo</h2>
 
-<button (click)="onSwitchMapClick()">SwitchMap</button>
-<button (click)="onConcatMapClick()">ConcatMap</button>
-<button (click)="onMergeMapClick()">MergeMap</button>
-<button (click)="onExhaustMapClick()">ExhaustMap</button>
+<button (click)="runSwitchMap()">Run switchMap</button>
+<button (click)="runConcatMap()">Run concatMap</button>
+<button (click)="runMergeMap()">Run mergeMap</button>
+<button (click)="runExhaustMap()">Run exhaustMap</button>
+
+<h3>Results:</h3>
+<ul>
+  <li *ngFor="let res of results">{{ res }}</li>
+</ul>
+
+<h3>Observables with combineLatest and forkJoin and zip</h3>
+<h3>combineLatest and forkJoin with take(4) and take(3)</h3>
+<button (click)="runCombineLatestWithTake()">Run combineLatest with take</button>
+<button (click)="runForkJoinWithTake()">Run forkJoin with take</button>
+<button (click)="runZipWithTake()">Run Zip with take</button>

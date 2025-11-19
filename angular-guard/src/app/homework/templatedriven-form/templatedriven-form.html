@@ -1,26 +1,154 @@
 <form #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
-  <input type="number" placeholder="Your age" name="age" [(ngModel)]="user.age">
-  <input type="text" placeholder="Your name" name="name" [(ngModel)]="user.name" minlength="3">
-  <input type="text" placeholder="Your surname" name="surname" [(ngModel)]="user.surname" minlength="3">
-  <input type="email" placeholder="Your email" name="email" [(ngModel)]="user.email" email required #email="ngModel">
-  <div *ngIf="email.touched && email.invalid " style="color: red">Please Enter a valid email</div>
+  <!-- <input type="number" placeholder="Your age" name="age" [(ngModel)]="user.age" required> -->
+  <input type="text" placeholder="Your name" name="name" [(ngModel)]="user.name" minlength="3" required>
+  <!-- <input type="text" placeholder="Your surname" name="surname" [(ngModel)]="user.surname" minlength="3" required> -->
+  <input type="email" placeholder="Your email" name="email" [(ngModel)]="user.email" required #email="ngModel">
+  <div *ngIf="email.pristine && email.invalid" style="color: red">
+    Please enter a valid email
+  </div>
   <input type="password" placeholder="Your password" name="password" [(ngModel)]="user.password" required>
-  <button form="submit" [disabled]="myForm.invalid">send</button>
+
+  <div ngModelGroup="address">
+    <input name="street" required placeholder="Street">
+    <!--  ngModel The element is registered as a form control and participates in the Angular form (template-driven form). -->
+
+    <input name="city" ngModel required placeholder="City" [(ngModel)]="user.code" />
+  </div>
+  <button type="submit" [disabled]="myForm.invalid">Send</button>
 </form>
 
-<form [formGroup]="myReactiveForm" (onSubmit)="doSomething(myReactiveForm)">
-  <label for="name">email</label>
-  <input id="name" formControlName="userName">
-  <div *ngIf="myReactiveForm.get('userName')?.invalid && myReactiveForm.get('userName')?.touched">
-    UserName should be longer than 2 characters
-  </div>
-  <label for="text">surname</label>
-  <input id="text" formControlName="userSurname">
-  <div style="color: red;"
-    *ngIf="myReactiveForm.get('userSurname')?.invalid && myReactiveForm.get('userSurname')?.touched">
-    Surname is invalid
-  </div>
-  <label for="password">password</label>
-  <input type="password" id="password" formControlName="password">
-  <button>Run</button>
-</form>
+<!-- 1. Which HTML attribute in Angular template-driven forms requires the user to fill in a value?
+A) required
+B) minlength
+C) pattern
+D) maxlength
+
+2. What validation class does Angular apply to an input that fails a validator after the user interacts with it?
+A) ng-pristine
+B) ng-valid
+C) ng-touched
+D) ng-invalid
+
+3. How do you specify that an input must have at least five characters?
+A) required="5"
+B) minlength="5"
+C) maxlength="5"
+D) ngModelLength="5"
+
+4. Fill in the blank: An input in Angular template-driven forms with a value that passes all validations will have the class ________ applied automatically.
+A) ng-dirty
+B) ng-invalid
+C) ng-valid
+D) ng-touched
+
+5. What will happen if you use the attribute pattern="^\\d+$" on an input?
+A) It restricts the input only to letters
+B) It restricts the input only to one character
+C) It restricts the input only to numbers
+D) It does nothing
+
+6. Which class indicates that the control's value has not been changed by the user?
+A) ng-pristine
+B) ng-dirty
+C) ng-valid
+D) ng-touched
+
+7. Which attribute would you use on an <input> to ensure the value does not exceed 10 characters?
+A) minlength="10"
+B) maxlength="10"
+C) required="10"
+D) pattern=".{0,10}"
+
+8. If a user clicks on an input, types something, and then clicks away, which classes will be present?
+A) ng-pristine ng-valid
+B) ng-dirty ng-touched
+C) ng-invalid ng-untouched
+D) ng-pristine ng-untouched
+
+9. How do you show an error for a required field only after the user interacts with it?
+A) Show error when input.dirty
+B) Show error when input.touched && input.invalid
+C) Show error always
+D) Show error when input.pristine && input.invalid
+
+10. What is the purpose of Angular’s automatic CSS classes on form controls?
+A) To help users submit the form
+B) To track control and form state and enable responsive styling for errors and valid states
+C) To inject extra HTML into the form
+D) To remove old styles -->
+
+
+
+
+
+
+<!-- a,d,b,c,c,a,b,b,b,b -->
+
+<!--
+The pattern attribute in an Angular (and HTML) input element is used to enforce that the input value matches a specific format defined by a regular expression (regex). It is useful for validating inputs that need to conform to certain rules, like phone numbers, postal codes, usernames, or passwords with specific requirements.
+
+Why use the pattern attribute:
+To validate user input against complex rules on the client side without custom code.
+
+To ensure the value matches expected format before submission.
+
+Works with template-driven and reactive forms for declarative validation.
+
+Works with a variety of input types (text, email, password, etc.).
+
+Examples of pattern usage in Angular template-driven forms
+Only digits (number) input
+
+xml
+<input
+  name="phone"
+  ngModel
+  pattern="^[0-9]{10}$"
+  #phone="ngModel"
+  placeholder="Enter 10-digit phone number"
+  required
+/>
+<div *ngIf="phone.invalid && phone.touched" style="color: red;">
+  Phone number must be 10 digits.
+</div>
+Explanation: This pattern checks that the input consists of exactly 10 digits.
+
+Password with at least one uppercase, one lowercase, one digit, and minimum 8 characters
+
+xml
+<input
+  type="password"
+  name="password"
+  ngModel
+  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+  #password="ngModel"
+  placeholder="Password"
+  required
+/>
+<div *ngIf="password.invalid && password.touched" style="color: red;">
+  Password must contain at least 8 characters, including uppercase, lowercase, and a number.
+</div>
+Explanation: This regex asserts the password contains the required character groups.
+
+Username: Only letters and numbers, 3 to 15 characters
+
+xml
+<input
+  name="username"
+  ngModel
+  pattern="^[a-zA-Z0-9]{3,15}$"
+  #username="ngModel"
+  placeholder="Username"
+  required
+/>
+<div *ngIf="username.invalid && username.touched" style="color: red;">
+  Username must be 3-15 characters, letters and numbers only.
+</div>
+Summary
+The pattern attribute uses regular expressions to declaratively validate input format.
+
+It compliments other validators (required, minlength, etc.) for fine-grained validation.
+
+Angular automatically tracks validity via this pattern and updates CSS classes like ng-valid or ng-invalid.
+
+You can show error messages based on the validator state. -->

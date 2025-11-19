@@ -12,7 +12,9 @@ import { ParentComponent } from './homework/onpush-strategy-parent/onpush-strate
 import { SignalsParent } from './homework/signals/signals';
 import { DirectiveComponent } from './homework/directive-component/directive-component';
 import { RxJsExample } from './homework/rx-js-example/rx-js-example';
-import { TemplatedrivenForm } from './homework/templatedriven-form/templatedriven-form';
+import { TemplateDrivenForm } from './homework/templatedriven-form/templatedriven-form';
+import { ReplayDemoComponent } from './homework/rxjs-subjects/rxjs-subjects';
+import { Reactive } from './homework/reactive/reactive';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -36,9 +38,13 @@ export const routes: Routes = [
   { path: 'directives', component: DirectiveComponent },
   { path: 'onpush', component: ParentComponent},
   { path: 'rxJS', component: RxJsExample
+  },{
+    path: 'subjects', component: ReplayDemoComponent
   },
   {
-    path: 'templatedrivenform', component: TemplatedrivenForm
+    path: 'templatedrivenform', component: TemplateDrivenForm
+  },{
+    path: 'reactive', component: Reactive
   },{
     path: 'zoneJS', component: LoadReportsList
   },
