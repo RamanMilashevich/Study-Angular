@@ -15,6 +15,9 @@ import { RxJsExample } from './homework/rx-js-example/rx-js-example';
 import { TemplateDrivenForm } from './homework/templatedriven-form/templatedriven-form';
 import { ReplayDemoComponent } from './homework/rxjs-subjects/rxjs-subjects';
 import { Reactive } from './homework/reactive/reactive';
+import { SignalsExample } from './homework/signals-example/signals-example';
+import { SignalsMethods } from './homework/signals-methods/signals-methods';
+import { SignalsConvertObservable } from './homework/signals-convert-observable/signals-convert-observable';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -34,7 +37,6 @@ export const routes: Routes = [
   { path: 'reports', loadComponent: loadReportsList },
   { path: 'reports/:id', loadComponent: loadReportDetails, resolve: { report: ReportDetailsResolver } },
   { path: 'forms/template', loadComponent: loadFormsTemplateDemo },
-  { path: 'forms/reactive', loadComponent: loadFormsReactiveDemo },
   { path: 'directives', component: DirectiveComponent },
   { path: 'onpush', component: ParentComponent},
   { path: 'rxJS', component: RxJsExample
@@ -51,6 +53,9 @@ export const routes: Routes = [
   { path: 'signals', component: SignalsParent},
   { path: 'child', component: Child },
   { path: 'child-string', component: ChildStringComponent },
+  { path: 'signals2', component: SignalsExample },
+  { path: 'signalsmethods', component: SignalsMethods},
+  {path: 'signalobservables', component: SignalsConvertObservable},
   { path: '**', component: NotFoundComponent }
 ];
 
@@ -88,7 +93,4 @@ export function loadReportDetails() {
 // Forms demo lazy loaders (keep named for better stack traces)
 export function loadFormsTemplateDemo() {
   return import('./components/forms-template-demo').then(m => m.AppComponent);
-}
-export function loadFormsReactiveDemo() {
-  return import('./components/forms-reactive-demo').then(m => m.FormsReactiveDemoComponent);
 }

@@ -1,0 +1,8 @@
+<h3>Counter: {{ counter() }}</h3>
+<button (click)="setCounter(10)">Set to 10</button>
+<button (click)="incrementCounter()">Increment</button>
+<button (click)="mutateUser()">Mutate User Name</button>
+<button (click)="destroyCounter()">Destroy Signal</button>
+
+<p>User Name: {{ user().name }}</p>
+<p>Greeting (computed): {{ greeting() }}</p>

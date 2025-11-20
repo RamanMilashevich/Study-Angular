@@ -1,1 +1,4 @@
 <p>signals-example works!</p>
+{{ fullName() }} <!-- {{}} - its interpolation -->
+<input type="text" [value]="firstName()" (input)="onInput($event)" placeholder="enter your first name">
+<input type="text" [value]="secondName()" (input)="onInput2($event)" placeholder="enter your second name">
