@@ -1,0 +1,49 @@
+<h1>Angular HTML Sanitization Demo</h1>
+
+<!-- 1. Angular automatically sanitizes this -->
+<section>
+  <h2>1️⃣ Automatically Sanitized HTML</h2>
+
+  <p><strong>Input HTML:</strong></p>
+  <pre>{{ UNSAFE_html }}</pre>
+
+  <p><strong>Rendered (sanitized) output:</strong></p>
+  <div class="example-box" [innerHTML]="UNSAFE_html"></div>
+</section>
+
+<hr>
+
+<!-- 2. Trusted system-generated HTML -->
+<section>
+  <h2>2️⃣ Trusted HTML (bypassSecurityTrustHtml)</h2>
+
+  <p>This HTML is considered safe by the developer:</p>
+
+  <div class="example-box" [innerHTML]="trustedHtml"></div>
+</section>
+
+<hr>
+
+<!-- 3. Dangerous misuse -->
+<section>
+  <h2>3️⃣ ⚠️ Dangerous Example (DO NOT DO THIS)</h2>
+
+  <p>Here we trust user-provided HTML directly — extremely unsafe:</p>
+
+  <div class="example-box danger" [innerHTML]="dangerouslyTrustedHtml"></div>
+
+  <p style="color:red;">
+    ❗ This will execute script-like behavior if the browser allows.
+  </p>
+</section>
+
+<hr>
+
+<!-- 4. Iframe URL sanitization -->
+<section>
+  <h2>4️⃣ Safe Resource URL (YouTube iframe)</h2>
+
+  <p>Angular blocks iframe URLs unless trusted with DomSanitizer:</p>
+
+  <iframe width="380" height="250" [src]="safeVideoUrl"></iframe>
+</section>

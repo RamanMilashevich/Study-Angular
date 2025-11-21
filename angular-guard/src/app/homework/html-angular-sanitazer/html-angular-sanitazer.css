@@ -1,0 +1,11 @@
+.example-box {
+  border: 1px solid #ccc;
+  padding: 12px;
+  margin: 10px 0;
+  background: #f9f9f9;
+}
+
+.example-box.danger {
+  border-color: red;
+  background: #ffeaea;
+}

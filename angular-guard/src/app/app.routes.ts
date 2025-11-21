@@ -18,6 +18,7 @@ import { Reactive } from './homework/reactive/reactive';
 import { SignalsExample } from './homework/signals-example/signals-example';
 import { SignalsMethods } from './homework/signals-methods/signals-methods';
 import { SignalsConvertObservable } from './homework/signals-convert-observable/signals-convert-observable';
+import { HtmlAngularSanitazer } from './homework/html-angular-sanitazer/html-angular-sanitazer';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -56,6 +57,7 @@ export const routes: Routes = [
   { path: 'signals2', component: SignalsExample },
   { path: 'signalsmethods', component: SignalsMethods},
   {path: 'signalobservables', component: SignalsConvertObservable},
+  {path: 'sanitazer', component: HtmlAngularSanitazer},
   { path: '**', component: NotFoundComponent }
 ];
 
