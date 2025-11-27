@@ -1,0 +1,6 @@
+<div *ngFor="let device of devices">
+  <h2>{{ device.name }}</h2>
+  <p>{{ device.type }}</p>
+  <button *ngIf="device.online; else off" (click)="toggleOnline(device.id)">turn of</button>
+  <ng-template #off><button (click)="toggleOnline(device.id)">turn on</button></ng-template>
+</div>

@@ -19,6 +19,8 @@ import { SignalsExample } from './homework/signals-example/signals-example';
 import { SignalsMethods } from './homework/signals-methods/signals-methods';
 import { SignalsConvertObservable } from './homework/signals-convert-observable/signals-convert-observable';
 import { HtmlAngularSanitazer } from './homework/html-angular-sanitazer/html-angular-sanitazer';
+import { For } from './homework/for/for';
+import { AppComponentTemplate } from './homework/ng-template-outlet/app/app';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -58,7 +60,10 @@ export const routes: Routes = [
   { path: 'signalsmethods', component: SignalsMethods},
   {path: 'signalobservables', component: SignalsConvertObservable},
   {path: 'sanitazer', component: HtmlAngularSanitazer},
-  { path: '**', component: NotFoundComponent }
+  {path: 'for', component: For},
+  { path: 'injector', component: AppComponentTemplate},
+  { path: '**', component: NotFoundComponent },
+
 ];
 
 // ---- Lazy loaders with named pickers (no anonymous functions) ----
