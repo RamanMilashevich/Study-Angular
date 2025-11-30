@@ -21,6 +21,7 @@ import { SignalsConvertObservable } from './homework/signals-convert-observable/
 import { HtmlAngularSanitazer } from './homework/html-angular-sanitazer/html-angular-sanitazer';
 import { For } from './homework/for/for';
 import { AppComponentTemplate } from './homework/ng-template-outlet/app/app';
+import { Httpclient } from './interview/httpclient/httpclient';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -37,31 +38,7 @@ export const routes: Routes = [
       { path: '', pathMatch: 'full', redirectTo: 'new1' }
     ]
   },
-  { path: 'reports', loadComponent: loadReportsList },
-  { path: 'reports/:id', loadComponent: loadReportDetails, resolve: { report: ReportDetailsResolver } },
-  { path: 'forms/template', loadComponent: loadFormsTemplateDemo },
-  { path: 'directives', component: DirectiveComponent },
-  { path: 'onpush', component: ParentComponent},
-  { path: 'rxJS', component: RxJsExample
-  },{
-    path: 'subjects', component: ReplayDemoComponent
-  },
-  {
-    path: 'templatedrivenform', component: TemplateDrivenForm
-  },{
-    path: 'reactive', component: Reactive
-  },{
-    path: 'zoneJS', component: LoadReportsList
-  },
-  { path: 'signals', component: SignalsParent},
-  { path: 'child', component: Child },
-  { path: 'child-string', component: ChildStringComponent },
-  { path: 'signals2', component: SignalsExample },
-  { path: 'signalsmethods', component: SignalsMethods},
-  {path: 'signalobservables', component: SignalsConvertObservable},
-  {path: 'sanitazer', component: HtmlAngularSanitazer},
-  {path: 'for', component: For},
-  { path: 'injector', component: AppComponentTemplate},
+  { path: 'httpclient', component: Httpclient},
   { path: '**', component: NotFoundComponent },
 
 ];
